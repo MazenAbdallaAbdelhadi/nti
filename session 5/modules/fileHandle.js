@@ -1,6 +1,6 @@
-import fs from "fs";
+const fs = require("fs");
 
-export default class handleJson {
+module.exports = class handleJson {
   static readFromJson(filename = "user.json") {
     let result;
     try {
@@ -15,4 +15,4 @@ export default class handleJson {
   static writeToJson(filename = "user.json", data) {
     fs.writeFileSync(filename, JSON.stringify(data));
   }
-}
+};

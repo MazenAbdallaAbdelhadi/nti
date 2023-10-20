@@ -1,16 +1,60 @@
-import Users from "./modules/User.js";
+const Users = require("./modules/User.js");
+const yargs = require("yargs");
 
 const users = new Users();
 
-// users.save("mazen", 300);
-// users.save("mohamed", 500);
-// users.save("ali", 200);
+yargs.command({
+  command: "addUser",
+  builder: {
+    name: {
+      type: "string",
+      demandOption: true,
+    },
+    balance: {
+      type: "number",
+      demandOption: true,
+    },
+  },
+  handler: function (argv) {
+    users.save(argv.name, argv.balance);
+  },
+});
 
-// users.showAll();
+yargs.command({
+  command: "editbalance",
+  builder: {
+    id: {
+      type: "number",
+      demandOption: true,
+    },
+    balance: {
+      type: "number",
+      demandOption: true,
+    },
+  },
+  handler: function (argv) {
+    users.editBalance(argv.id, argv.balance);
+  },
+});
 
-// users.editBalance(1696785589629, 800);
-// users.showAll();
+yargs.command({
+  command: "showAll",
+  handler: function () {
+    users.showAll();
+  },
+});
 
-// users.deleteUser(1696785589632);
+yargs.command({
+  command: "deleteUser",
+  builder: {
+    id: {
+      type: "number",
+      demandOption: true,
+    },
+  },
+  handler: function (argv) {
+    users.deleteUser(argv.id);
+  },
+});
 
-// users.showAll();
+yargs.argv;

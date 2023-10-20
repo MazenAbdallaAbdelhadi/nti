@@ -1,6 +1,6 @@
-import handleJson from "./fileHandle.js";
+const handleJson = require("./fileHandle.js");
 
-export default class Users {
+module.exports = class Users {
   #users;
   #filename;
   constructor() {
@@ -32,4 +32,4 @@ export default class Users {
       );
     });
   }
-}
+};
